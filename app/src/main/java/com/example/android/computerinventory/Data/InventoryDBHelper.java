@@ -21,8 +21,8 @@ public class InventoryDBHelper extends SQLiteOpenHelper{
                     inventoryEntry.PRODUCT_TYPE + " INTEGER NOT NULL," +
                     inventoryEntry.PRODUCT_QUANTITY + " INTEGER CHECK(" +
                     inventoryEntry.PRODUCT_QUANTITY +" >= 0)," +
-                    inventoryEntry.PRODUCT_PRICE + " INTEGER CHECK (" +
-                    inventoryEntry.PRODUCT_PRICE + " >= 0));";
+                    inventoryEntry.PRODUCT_PRICE + " INTEGER CHECK(" +
+                    inventoryEntry.PRODUCT_PRICE + " > 0));";
 
     //  Delete Table
     private static final String SQL_DELETE_TABLE =

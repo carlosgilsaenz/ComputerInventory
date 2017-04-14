@@ -33,12 +33,13 @@ public class InventoryActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @BindView(R.id.recycler_view)
-    RecyclerView mRecyclerView;
+//    @BindView(R.id.recycler_view)
+//    RecyclerView mRecyclerView;
 
     @OnClick(R.id.fab)
     public void fabClicked(){
         insertData();
+        displayData();
     }
 
     @Override
@@ -51,10 +52,12 @@ public class InventoryActivity extends AppCompatActivity {
         //  Setup Toolbar, theme sets to noActionBar
         setSupportActionBar(mToolbar);
 
-        //  Config Recycler View Layout
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        //  Config Recycler View Layout
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mDbHelper = new InventoryDBHelper(this);
+
+        displayData();
     }
 
     @Override
@@ -82,9 +85,9 @@ public class InventoryActivity extends AppCompatActivity {
         //  Create Values to insert
         ContentValues values = new ContentValues();
 
-        values.put(inventoryEntry.PRODUCT_NAME, "Laptop");
+        values.put(inventoryEntry.PRODUCT_NAME, "Desktop");
         values.put(inventoryEntry.PRODUCT_TYPE, 0);
-        values.put(inventoryEntry.PRODUCT_QUANTITY, 1);
+        values.put(inventoryEntry.PRODUCT_QUANTITY, 0);
         values.put(inventoryEntry.PRODUCT_PRICE, 1000);
 
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
@@ -92,11 +95,16 @@ public class InventoryActivity extends AppCompatActivity {
         long newRowId = db.insert(inventoryEntry.TABLE_NAME, null, values);
 
         if(newRowId != -1){
-            Toast.makeText(this,"Insert successful", Toast.LENGTH_SHORT).show();}
-
+            Toast.makeText(this,"Insert successful", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"Insert unsuccessful", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void displayData(SQLiteDatabase db){
+    public void displayData(){
+
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
         TextView textView = (TextView) findViewById(R.id.empty_text_view);
 
         // projection of data to grab
@@ -117,8 +125,26 @@ public class InventoryActivity extends AppCompatActivity {
                 null,                  // Don't filter by row groups
                 null);                   // The sort order
 
-        textView.setText("The Inventory contains " + cursor.getCount() + "items.\n\n");
+        textView.setText("The Inventory contains " + cursor.getCount() + " items.\n\n");
 
+        int indexName = cursor.getColumnIndex(inventoryEntry.PRODUCT_NAME);
+        int indexType = cursor.getColumnIndex(inventoryEntry.PRODUCT_TYPE);
+        int indexQuantity = cursor.getColumnIndex(inventoryEntry.PRODUCT_QUANTITY);
+        int indexPrice = cursor.getColumnIndex(inventoryEntry.PRODUCT_PRICE);
 
+        while(cursor.moveToNext()){
+
+            String stringName = cursor.getString(indexName);
+            int intType = cursor.getInt(indexType);
+            int intQuantity = cursor.getInt(indexQuantity);
+            int intPrice = cursor.getInt(indexPrice);
+
+            textView.append("Product name: " + stringName + "\n");
+            textView.append("Product Type: " + intType + "\n");
+            textView.append("Product Quantity: " + intQuantity + "\n");
+            textView.append("Product Price " +  intPrice + "\n\n");
+        }
+
+        cursor.close();
     }
 }
