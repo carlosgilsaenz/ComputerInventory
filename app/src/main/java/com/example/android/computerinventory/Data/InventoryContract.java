@@ -1,5 +1,7 @@
 package com.example.android.computerinventory.Data;
 
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 /**
@@ -26,5 +28,17 @@ public class InventoryContract {
 
         //  Product price
         public static final String PRODUCT_PRICE = "price";
+
+        //  URI creation
+        public static final String CONTENT_AUTHORITY = "com.example.android.computerinventory";
+        public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+        public static final String PATH_INVENTORY = "inventory";
+
+        //  Create URI
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_INVENTORY);
+
+        //  MIME type for list of inventory
+        public static final String CONTENT_LIST_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_INVENTORY;
     }
 }

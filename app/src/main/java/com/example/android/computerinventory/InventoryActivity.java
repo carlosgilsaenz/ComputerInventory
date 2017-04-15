@@ -1,26 +1,19 @@
 package com.example.android.computerinventory;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.BaseColumns;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.computerinventory.Data.InventoryContract.inventoryEntry;
-import com.example.android.computerinventory.Data.InventoryDBHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,13 +21,8 @@ import butterknife.OnClick;
 
 public class InventoryActivity extends AppCompatActivity {
 
-    InventoryDBHelper mDbHelper;
-
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-
-//    @BindView(R.id.recycler_view)
-//    RecyclerView mRecyclerView;
 
     @OnClick(R.id.fab)
     public void fabClicked(){
@@ -51,11 +39,6 @@ public class InventoryActivity extends AppCompatActivity {
 
         //  Setup Toolbar, theme sets to noActionBar
         setSupportActionBar(mToolbar);
-
-//        //  Config Recycler View Layout
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mDbHelper = new InventoryDBHelper(this);
 
         displayData();
     }
@@ -75,7 +58,13 @@ public class InventoryActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_delete) {
+            int rowsDeleted = getContentResolver().delete(inventoryEntry.CONTENT_URI,null,null);
+
+            displayData();
+
+            Toast.makeText(this,"Number of Rows Deleted: " + rowsDeleted, Toast.LENGTH_SHORT).show();
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -88,13 +77,11 @@ public class InventoryActivity extends AppCompatActivity {
         values.put(inventoryEntry.PRODUCT_NAME, "Desktop");
         values.put(inventoryEntry.PRODUCT_TYPE, 0);
         values.put(inventoryEntry.PRODUCT_QUANTITY, 0);
-        values.put(inventoryEntry.PRODUCT_PRICE, 1000);
+        values.put(inventoryEntry.PRODUCT_PRICE, 1);
 
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        Uri uri = getContentResolver().insert(inventoryEntry.CONTENT_URI, values);
 
-        long newRowId = db.insert(inventoryEntry.TABLE_NAME, null, values);
-
-        if(newRowId != -1){
+        if(ContentUris.parseId(uri) != -1){
             Toast.makeText(this,"Insert successful", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this,"Insert unsuccessful", Toast.LENGTH_SHORT).show();
@@ -102,8 +89,6 @@ public class InventoryActivity extends AppCompatActivity {
     }
 
     public void displayData(){
-
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         TextView textView = (TextView) findViewById(R.id.empty_text_view);
 
@@ -116,14 +101,7 @@ public class InventoryActivity extends AppCompatActivity {
                 inventoryEntry.PRODUCT_PRICE};
 
         // Perform a query on the pets table
-        Cursor cursor = db.query(
-                inventoryEntry.TABLE_NAME,   // The table to query
-                projection,            // The columns to return
-                null,                  // The columns for the WHERE clause
-                null,                  // The values for the WHERE clause
-                null,                  // Don't group the rows
-                null,                  // Don't filter by row groups
-                null);                   // The sort order
+        Cursor cursor = getContentResolver().query(inventoryEntry.CONTENT_URI,projection,null,null,null);
 
         textView.setText("The Inventory contains " + cursor.getCount() + " items.\n\n");
 
@@ -144,7 +122,5 @@ public class InventoryActivity extends AppCompatActivity {
             textView.append("Product Quantity: " + intQuantity + "\n");
             textView.append("Product Price " +  intPrice + "\n\n");
         }
-
-        cursor.close();
     }
 }
