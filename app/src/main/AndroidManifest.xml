@@ -18,10 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name=".Data.InventoryProvider"
             android:authorities="com.example.android.computerinventory"
             android:exported="false" />
+
+        <activity android:name=".AddActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.computerinventory.InventoryActivity" />
+        </activity>
     </application>
 
 </manifest>

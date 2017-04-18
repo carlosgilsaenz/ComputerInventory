@@ -24,11 +24,11 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary">
 
-            <android.support.v4.widget.CircleImageView
+            <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/image_computer_type"
-                android:src="@drawable/ic_laptop" />
+                tools:src="@drawable/ic_desktop"/>
 
             <TextView
                 android:id="@+id/text_title"

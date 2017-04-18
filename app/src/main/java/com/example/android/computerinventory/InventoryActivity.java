@@ -1,16 +1,21 @@
 package com.example.android.computerinventory;
 
+import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.CursorLoader;
+import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.computerinventory.Data.InventoryContract.inventoryEntry;
@@ -19,15 +24,22 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class InventoryActivity extends AppCompatActivity {
+public class InventoryActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+
+    private final static int INVENTORY_LOADER_ID = 0;
+
+    RecyclerAdapter mAdapter;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+
     @OnClick(R.id.fab)
     public void fabClicked(){
-        insertData();
-        displayData();
+        Intent intent = new Intent(this, AddActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -40,7 +52,16 @@ public class InventoryActivity extends AppCompatActivity {
         //  Setup Toolbar, theme sets to noActionBar
         setSupportActionBar(mToolbar);
 
-        displayData();
+        //  Set adapter with null value
+        mAdapter = new RecyclerAdapter(this,null);
+
+        //  Set adapter to RecyclerView
+        mRecyclerView.setAdapter(mAdapter);
+
+        //  Set Layout for RecyclerView
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        getLoaderManager().initLoader(INVENTORY_LOADER_ID,null,this);
     }
 
     @Override
@@ -59,9 +80,8 @@ public class InventoryActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_delete) {
-            int rowsDeleted = getContentResolver().delete(inventoryEntry.CONTENT_URI,null,null);
 
-            displayData();
+            int rowsDeleted = getContentResolver().delete(inventoryEntry.CONTENT_URI,null,null);
 
             Toast.makeText(this,"Number of Rows Deleted: " + rowsDeleted, Toast.LENGTH_SHORT).show();
 
@@ -88,10 +108,8 @@ public class InventoryActivity extends AppCompatActivity {
         }
     }
 
-    public void displayData(){
-
-        TextView textView = (TextView) findViewById(R.id.empty_text_view);
-
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         // projection of data to grab
         String[] projection = {
                 BaseColumns._ID,
@@ -100,27 +118,16 @@ public class InventoryActivity extends AppCompatActivity {
                 inventoryEntry.PRODUCT_QUANTITY,
                 inventoryEntry.PRODUCT_PRICE};
 
-        // Perform a query on the pets table
-        Cursor cursor = getContentResolver().query(inventoryEntry.CONTENT_URI,projection,null,null,null);
+        return new CursorLoader(this, inventoryEntry.CONTENT_URI, projection, null, null, null);
+    }
 
-        textView.setText("The Inventory contains " + cursor.getCount() + " items.\n\n");
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mAdapter.swapCursor(data);
+    }
 
-        int indexName = cursor.getColumnIndex(inventoryEntry.PRODUCT_NAME);
-        int indexType = cursor.getColumnIndex(inventoryEntry.PRODUCT_TYPE);
-        int indexQuantity = cursor.getColumnIndex(inventoryEntry.PRODUCT_QUANTITY);
-        int indexPrice = cursor.getColumnIndex(inventoryEntry.PRODUCT_PRICE);
-
-        while(cursor.moveToNext()){
-
-            String stringName = cursor.getString(indexName);
-            int intType = cursor.getInt(indexType);
-            int intQuantity = cursor.getInt(indexQuantity);
-            int intPrice = cursor.getInt(indexPrice);
-
-            textView.append("Product name: " + stringName + "\n");
-            textView.append("Product Type: " + intType + "\n");
-            textView.append("Product Quantity: " + intQuantity + "\n");
-            textView.append("Product Price " +  intPrice + "\n\n");
-        }
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mAdapter.swapCursor(null);
     }
 }

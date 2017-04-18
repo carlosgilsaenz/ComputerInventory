@@ -52,6 +52,10 @@ public class InventoryProvider extends ContentProvider{
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
+
+        //  set listener for changes to DB
+        cursor.setNotificationUri(getContext().getContentResolver(),inventoryEntry.CONTENT_URI);
+
         return cursor;
     }
 
@@ -78,6 +82,9 @@ public class InventoryProvider extends ContentProvider{
 
         db.close();
 
+        //notify listener of change
+        getContext().getContentResolver().notifyChange(uri, null);
+
         return ContentUris.withAppendedId(uri, id);
     }
 
@@ -95,6 +102,11 @@ public class InventoryProvider extends ContentProvider{
                 break;
             default:
                 rowsDeleted = 0;
+        }
+
+        if(rowsDeleted > 0){
+            //notify listener of change
+            getContext().getContentResolver().notifyChange(uri, null);
         }
 
         return rowsDeleted;
