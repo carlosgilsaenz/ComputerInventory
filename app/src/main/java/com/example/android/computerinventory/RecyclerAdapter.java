@@ -56,7 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Custom
         String quantityString = Integer.toString(mCursor.getInt(quantityIndex));
 
         int priceIndex = mCursor.getColumnIndex(inventoryEntry.PRODUCT_PRICE);
-        String priceString = Integer.toString(mCursor.getInt(priceIndex));
+        int priceInt = mCursor.getInt(priceIndex);
 
         int imageIndex = mCursor.getColumnIndex(inventoryEntry.PRODUCT_TYPE);
         int imageType = mCursor.getInt(imageIndex);
@@ -69,7 +69,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Custom
         quantityView.setText(quantityString);
 
         TextView priceView = holder.priceView;
-        priceView.setText(priceString);
+        priceView.setText("$" + priceInt);
 
         ImageView imageView = holder.imageView;
         setImageView(imageType, imageView);

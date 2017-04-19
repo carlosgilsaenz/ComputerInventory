@@ -29,6 +29,9 @@ public class InventoryContract {
         //  Product price
         public static final String PRODUCT_PRICE = "price";
 
+        //  Manufacturers email
+        public static final String MANUFACTURE_EMAIL = "email";
+
         //  URI creation
         public static final String CONTENT_AUTHORITY = "com.example.android.computerinventory";
         public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
