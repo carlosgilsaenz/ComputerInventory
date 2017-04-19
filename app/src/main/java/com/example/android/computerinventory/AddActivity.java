@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AddActivity extends AppCompatActivity {
-    
+
     @BindView(R.id.radio_group)
     RadioGroup mRadioGroup;
 
