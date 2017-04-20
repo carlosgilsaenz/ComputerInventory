@@ -90,24 +90,6 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
         return super.onOptionsItemSelected(item);
     }
 
-    public void insertData(){
-        //  Create Values to insert
-        ContentValues values = new ContentValues();
-
-        values.put(inventoryEntry.PRODUCT_NAME, "Desktop");
-        values.put(inventoryEntry.PRODUCT_TYPE, 0);
-        values.put(inventoryEntry.PRODUCT_QUANTITY, 0);
-        values.put(inventoryEntry.PRODUCT_PRICE, 1);
-
-        Uri uri = getContentResolver().insert(inventoryEntry.CONTENT_URI, values);
-
-        if(ContentUris.parseId(uri) != -1){
-            Toast.makeText(this,"Insert successful", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this,"Insert unsuccessful", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         // projection of data to grab

@@ -29,6 +29,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.computerinventory.InventoryActivity" />
         </activity>
+        <activity android:name=".DetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.computerinventory.InventoryActivity" />
+        </activity>
     </application>
 
 </manifest>

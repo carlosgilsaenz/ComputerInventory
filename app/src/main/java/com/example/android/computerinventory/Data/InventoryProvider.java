@@ -20,12 +20,14 @@ public class InventoryProvider extends ContentProvider{
 
     private static final int COMPUTERS = 100;
 
-//    private static final int COMPUTER_ID = 101;
+    private static final int COMPUTER_ID = 101;
 
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
         sUriMatcher.addURI(inventoryEntry.CONTENT_AUTHORITY, inventoryEntry.PATH_INVENTORY, COMPUTERS);
+        sUriMatcher.addURI(inventoryEntry.CONTENT_AUTHORITY, inventoryEntry.PATH_INVENTORY + "/#", COMPUTER_ID);
+
     }
 
     private InventoryDBHelper mDbHelper;
@@ -48,6 +50,15 @@ public class InventoryProvider extends ContentProvider{
         switch (match){
             case COMPUTERS:
                 cursor = db.query(inventoryEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+                break;
+            case COMPUTER_ID:
+
+                selection = inventoryEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+
+                cursor = db.query(inventoryEntry.TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+
                 break;
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);

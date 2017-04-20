@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="3dp"
+                android:id="@+id/image_computer_type"
+                tools:src="@drawable/ic_desktop"/>
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:padding="12dp"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                tools:text="TEXT TITLE OF ITEM REALLY LONG" />
+        </LinearLayout>
+
+        <View
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorText"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <Button
+                    android:layout_toLeftOf="@+id/detail_quantity_amount"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:textSize="35sp"
+                    android:gravity="center"
+                    android:text="+"/>
+
+                <Button
+                    android:layout_toRightOf="@+id/detail_quantity_amount"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:textSize="35sp"
+                    android:gravity="center"
+                    android:text="-"/>
+
+                <TextView
+                    android:id="@+id/detail_quantity_amount"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:layout_above="@+id/text_quantity"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:textColor="@color/colorText"
+                    android:textSize="45sp"
+                    android:textStyle="bold"
+                    tools:text="0" />
+
+                <TextView
+                    android:id="@+id/text_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:text="quantity"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorText"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorText"/>
+
+    </LinearLayout>
+</ScrollView>

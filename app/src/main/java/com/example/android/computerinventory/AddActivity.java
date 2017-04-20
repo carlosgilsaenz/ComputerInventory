@@ -102,15 +102,15 @@ public class AddActivity extends AppCompatActivity {
 
         values.put(inventoryEntry.PRODUCT_NAME, name);
         values.put(inventoryEntry.PRODUCT_TYPE, computerType);
-        values.put(inventoryEntry.PRODUCT_QUANTITY, 0);
+        values.put(inventoryEntry.MANUFACTURE_EMAIL, email);
         values.put(inventoryEntry.PRODUCT_PRICE, priceInt);
 
         Uri uri = getContentResolver().insert(inventoryEntry.CONTENT_URI, values);
 
         if(ContentUris.parseId(uri) != -1){
-            displayMessage("Insert successful");
+            displayMessage("Save successful");
         } else {
-            displayMessage("Insert unsuccessful");
+            displayMessage("Save unsuccessful");
         }
 
         finish();

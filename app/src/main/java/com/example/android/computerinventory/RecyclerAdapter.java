@@ -1,8 +1,12 @@
 package com.example.android.computerinventory;
 
+import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.provider.BaseColumns;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.computerinventory.Data.InventoryContract.inventoryEntry;
+
+import java.net.URI;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -61,6 +68,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Custom
         int imageIndex = mCursor.getColumnIndex(inventoryEntry.PRODUCT_TYPE);
         int imageType = mCursor.getInt(imageIndex);
 
+        long id = mCursor.getLong(mCursor.getColumnIndex(BaseColumns._ID));
+
         //  Set contents on CardView
         TextView titleView = holder.titleView;
         titleView.setText(titleString);
@@ -73,7 +82,28 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Custom
 
         ImageView imageView = holder.imageView;
         setImageView(imageType, imageView);
+
+        //  Set Listener on entire Card
+        holder.cardView.setOnClickListener(new CardViewClicked(id));
     }
+
+    public class CardViewClicked implements View.OnClickListener {
+
+        Long mID;
+
+        public CardViewClicked(Long id) {
+            mID = id;
+        }
+
+        @Override
+        public void onClick(View arg0) {
+            Intent intent = new Intent(mContext, DetailActivity.class);
+            Uri uri = ContentUris.withAppendedId(inventoryEntry.CONTENT_URI, mID);
+            intent.setData(uri);
+            mContext.startActivity(intent);
+        }
+    }
+
 
     @Override
     public int getItemCount() {
