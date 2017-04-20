@@ -70,20 +70,8 @@ public class AddActivity extends AppCompatActivity {
         //  Get name of product
         String name = mName.getText().toString().trim();
 
-        //  Confirm Name is valid
-        if(name.isEmpty() || name.equals("")){
-            displayMessage("Name is invalid");
-            return;
-        }
-
         //  Get email
         String email = mEmail.getText().toString().trim();
-
-        //  Confirm email is not valid
-        if(email.isEmpty() || email.equals("") || !email.contains("@")){
-            displayMessage("Email is invalid");
-            return;
-        }
 
         //  Get price
         String priceString = mPrice.getText().toString().trim();
@@ -91,7 +79,7 @@ public class AddActivity extends AppCompatActivity {
 
         //  confirm price is valid
         if(priceString.isEmpty() || priceString.equals("")){
-            displayMessage("Price must invalid");
+            displayMessage("Price is invalid");
             return;
         } else{
             priceInt = Integer.parseInt(priceString);
@@ -107,7 +95,7 @@ public class AddActivity extends AppCompatActivity {
 
         Uri uri = getContentResolver().insert(inventoryEntry.CONTENT_URI, values);
 
-        if(ContentUris.parseId(uri) != -1){
+        if(ContentUris.parseId(uri) != -1 || uri == null){
             displayMessage("Save successful");
         } else {
             displayMessage("Save unsuccessful");
@@ -129,6 +117,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public int getComputerType(int checkedButton){
+
         switch(checkedButton){
             case R.id.radio_button_desktop:
                 return 0;

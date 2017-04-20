@@ -73,12 +73,9 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_delete) {
 
             int rowsDeleted = getContentResolver().delete(inventoryEntry.CONTENT_URI,null,null);

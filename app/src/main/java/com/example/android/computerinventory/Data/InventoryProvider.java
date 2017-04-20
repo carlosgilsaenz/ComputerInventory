@@ -86,6 +86,20 @@ public class InventoryProvider extends ContentProvider{
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
+        //  Confirm Name is valid
+        String name = values.getAsString(inventoryEntry.PRODUCT_NAME);
+
+        if(name.isEmpty() || name.equals("")){
+            return null;
+        }
+
+        //  Confirm email is not valid
+        String email = values.getAsString(inventoryEntry.MANUFACTURE_EMAIL);
+
+        if(email.isEmpty() || email.equals("") || !email.contains("@")){
+            return null;
+        }
+
         // Get writable database
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 

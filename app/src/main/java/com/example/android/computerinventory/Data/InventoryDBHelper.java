@@ -27,7 +27,7 @@ public class InventoryDBHelper extends SQLiteOpenHelper{
 
     //  Delete Table
     private static final String SQL_DELETE_TABLE =
-            "DROP TABLE IF EXIST " + inventoryEntry.TABLE_NAME;
+            "DROP TABLE IF EXIST " + inventoryEntry.TABLE_NAME +";";
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
