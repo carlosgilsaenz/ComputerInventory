@@ -55,7 +55,6 @@
                 android:id="@+id/detail_text_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorText"
                 tools:text="Dell@dell.com"/>
 
             <View
@@ -81,15 +80,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    android:textColor="@color/colorText"
-
                     android:text="$"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:id="@+id/detail_text_price"
-                    android:textColor="@color/colorText"
                     tools:text="100"/>
 
             </LinearLayout>
@@ -110,8 +106,7 @@
                     android:id="@+id/detail_button_minus"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/ic_launcher_minus"
-                    android:onClick="minusQuantity"/>
+                    android:src="@drawable/ic_launcher_minus" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -123,7 +118,6 @@
                         android:layout_width="80sp"
                         android:layout_height="60sp"
                         android:gravity="center"
-                        android:textColor="@color/colorText"
                         android:textSize="45sp"
                         android:textStyle="bold"
                         tools:text="0" />
@@ -136,7 +130,6 @@
                         android:gravity="center"
                         android:text="quantity"
                         android:textAllCaps="true"
-                        android:textColor="@color/colorText"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -145,8 +138,7 @@
                     android:layout_gravity="center"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/ic_launcher_add"
-                    android:onClick="addQuantity"/>
+                    android:src="@drawable/ic_launcher_add" />
 
                 <View
                     android:layout_width="4dp"
@@ -158,14 +150,12 @@
                     android:background="@color/colorText" />
 
                 <Button
-                    android:id="@+id/save_button"
+                    android:id="@+id/detail_save_button"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Save"
-                    android:onClick="saveButton"
-                    />
+                    android:text="Save" />
 
 
             </LinearLayout>

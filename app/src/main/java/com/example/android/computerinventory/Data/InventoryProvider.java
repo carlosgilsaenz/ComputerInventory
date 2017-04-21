@@ -100,6 +100,13 @@ public class InventoryProvider extends ContentProvider{
             return null;
         }
 
+        //  Confirm computer type
+        int type = values.getAsInteger(inventoryEntry.PRODUCT_TYPE);
+
+        if(type < 0 || type > 2){
+            return null;
+        }
+
         // Get writable database
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -125,6 +132,13 @@ public class InventoryProvider extends ContentProvider{
             case COMPUTERS:
                 rowsDeleted = db.delete(inventoryEntry.TABLE_NAME, selection, selectionArgs);
                 break;
+            case COMPUTER_ID:
+
+                selection = inventoryEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+
+                rowsDeleted = db.delete(inventoryEntry.TABLE_NAME, selection, selectionArgs);
+                break;
             default:
                 rowsDeleted = 0;
         }
@@ -139,6 +153,45 @@ public class InventoryProvider extends ContentProvider{
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+
+        int match = sUriMatcher.match(uri);
+        switch (match){
+            case COMPUTERS:
+                return updateInventory(uri, values, selection, selectionArgs);
+            case COMPUTER_ID:
+
+                selection = inventoryEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+
+                return updateInventory(uri, values, selection, selectionArgs);
+
+            default:
+                throw new IllegalArgumentException("Cannot query unknown URI " + uri);
+        }
+    }
+
+    private int updateInventory(Uri uri, ContentValues values, String selection, String[] selectionArgs){
+        //  Confirm email is not valid
+        String email = values.getAsString(inventoryEntry.MANUFACTURE_EMAIL);
+
+        if(email.isEmpty() || email.equals("") || !email.contains("@")){
+            return 0;
+        }
+
+        if(values.size() == 0){
+            return 0;
+        }
+
+        //  Get writable database
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        //  Update DB and save results
+        int count = db.update(inventoryEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        //notify listener of change
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        db.close();
+        return count;
     }
 }

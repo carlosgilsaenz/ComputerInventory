@@ -1,7 +1,9 @@
 package com.example.android.computerinventory;
 
 import android.app.LoaderManager;
+import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
@@ -19,6 +21,7 @@ import com.example.android.computerinventory.Data.InventoryContract.inventoryEnt
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -43,6 +46,62 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
     @BindView(R.id.detail_text_price)
     EditText mPrice;
+
+    @OnClick(R.id.detail_button_minus)
+    public void minusQuantity(){
+
+        int oldQuantity = Integer.parseInt(mQuantity.getText().toString());
+
+        if(oldQuantity != 0){
+            String string = "" + --oldQuantity;
+
+            mQuantity.setText(string);
+        }
+    }
+
+    @OnClick(R.id.detail_button_add)
+    public void addQuantity(){
+
+        int oldQuantity = Integer.parseInt(mQuantity.getText().toString());
+        String string = "" + ++oldQuantity;
+
+        mQuantity.setText(string);
+    }
+
+    @OnClick(R.id.detail_save_button)
+    public void saveButton(View view){
+        //  get email
+        String email = mEmail.getText().toString().trim();
+
+        //  get quantity
+        int quantity = Integer.parseInt(mQuantity.getText().toString());
+
+        //  Get price
+        String priceString = mPrice.getText().toString().trim();
+        int price;
+
+        //  confirm price is valid
+        if(priceString.isEmpty() || priceString.equals("")){
+            displayMessage("Price is invalid");
+            return;
+        } else{
+            price = Integer.parseInt(priceString);
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(inventoryEntry.MANUFACTURE_EMAIL, email);
+        values.put(inventoryEntry.PRODUCT_QUANTITY, quantity);
+        values.put(inventoryEntry.PRODUCT_PRICE, price);
+
+        int results = getContentResolver().update(mComputerUri, values, null, null);
+
+        if(results != 0){
+            displayMessage("Update Successful");
+        } else {
+            displayMessage("Updated Failed");
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +131,32 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
         switch (id){
             case R.id.detail_menu_order:
+                String email[] = {mEmail.getText().toString().trim()};
+
+                String purchaseOrder = "Purchase Order - " + mName.getText().toString().trim();
+
+                if(email[0].isEmpty() || email[0].equals("") || !email[0].contains("@")){
+                    displayMessage("Invalid email");
+                }  else{
+                    Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_EMAIL, email);
+                    intent.putExtra(Intent.EXTRA_SUBJECT,purchaseOrder);
+                    startActivity(Intent.createChooser(intent,"Send email"));
+                }
                 return true;
             case R.id.detail_menu_sell:
                 return true;
             case R.id.detail_menu_delete:
-                return true;
+
+                int rowsDeleted = getContentResolver().delete(mComputerUri,null, null);
+
+                if(rowsDeleted == 0){
+                    displayMessage("Delete Failed");
+                } else {
+                    displayMessage("Delete Successful");
+                }
+                finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -113,55 +193,12 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             mQuantity.setText(""+ data.getInt(quantity));
             mPrice.setText("" + data.getInt(price));
 
-        } else {
-            displayMessage("Load failed");
         }
     }
 
     @Override
     public void onLoaderReset(android.content.Loader<Cursor> loader) {
 
-    }
-
-    public void addQuantity(View view){
-
-        int oldQuantity = Integer.parseInt(mQuantity.getText().toString());
-        String string = "" + ++oldQuantity;
-
-        mQuantity.setText(string);
-    }
-
-    public void minusQuantity(View view){
-
-        int oldQuantity = Integer.parseInt(mQuantity.getText().toString());
-
-        if(oldQuantity != 0){
-            String string = "" + --oldQuantity;
-
-            mQuantity.setText(string);
-        }
-    }
-
-    public void saveButton(View view){
-        //  get quantity
-        int quantity = Integer.parseInt(mQuantity.getText().toString());
-
-        //  get email
-        String email = mEmail.getText().toString().trim();
-
-        //  Get price
-        String priceString = mPrice.getText().toString().trim();
-        int price;
-
-        //  confirm price is valid
-        if(priceString.isEmpty() || priceString.equals("")){
-            displayMessage("Price is invalid");
-            return;
-        } else{
-            price = Integer.parseInt(priceString);
-        }
-
-        //TODO: add more stuff
     }
 
     public void displayMessage(String string){
