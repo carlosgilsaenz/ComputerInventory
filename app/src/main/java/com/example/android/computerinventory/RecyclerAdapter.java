@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.support.v7.widget.CardView;
@@ -18,10 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.computerinventory.Data.InventoryContract;
 import com.example.android.computerinventory.Data.InventoryContract.inventoryEntry;
 
-import java.net.URI;
 import java.text.DateFormat;
 import java.util.Date;
 
