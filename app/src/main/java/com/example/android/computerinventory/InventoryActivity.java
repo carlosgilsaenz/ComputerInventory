@@ -102,7 +102,8 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
                 inventoryEntry.PRODUCT_NAME,
                 inventoryEntry.PRODUCT_TYPE,
                 inventoryEntry.PRODUCT_QUANTITY,
-                inventoryEntry.PRODUCT_PRICE};
+                inventoryEntry.PRODUCT_PRICE,
+                inventoryEntry.PRODUCT_HISTORY};
 
         return new CursorLoader(this, inventoryEntry.CONTENT_URI, projection, null, null, null);
     }

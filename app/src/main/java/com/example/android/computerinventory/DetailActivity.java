@@ -33,6 +33,8 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
     private static final String SET_TYPE = "text/plain";
 
+    private static final String SET_DATA = "mailto:";
+
     private static final String STRING_SEPARATOR = "_,_";
 
     private static final int INVENTORY_LOADER_ID = 0;
@@ -132,6 +134,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
                 }  else{
                     Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                     intent.setType(SET_TYPE);
+                    intent.setData(Uri.parse(SET_DATA));
                     intent.putExtra(Intent.EXTRA_EMAIL, email);
                     intent.putExtra(Intent.EXTRA_SUBJECT,purchaseOrder);
                     startActivity(Intent.createChooser(intent,getString(R.string.detail_act_send_email)));

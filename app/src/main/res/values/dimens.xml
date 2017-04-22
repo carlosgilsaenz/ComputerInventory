@@ -19,7 +19,7 @@
     <dimen name="detail_quantity_h">60sp</dimen>
 
     <!-- Card View -->
-    <dimen name="card_h">220dp</dimen>
+    <dimen name="card_h">270dp</dimen>
     <dimen name="card_elevation">8dp</dimen>
     <dimen name="card_radius">10dp</dimen>
     <dimen name="card_image">100dp</dimen>

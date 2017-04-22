@@ -19,6 +19,12 @@ import butterknife.OnClick;
 
 public class AddActivity extends AppCompatActivity {
 
+    private static final int DESKTOP = 0;
+
+    private static final int LAPTOP = 1;
+
+    private static final int TABLET = 2;
+
     @BindView(R.id.radio_group)
     RadioGroup mRadioGroup;
 
@@ -120,11 +126,11 @@ public class AddActivity extends AppCompatActivity {
 
         switch(checkedButton){
             case R.id.radio_button_desktop:
-                return 0;
+                return DESKTOP;
             case R.id.radio_button_laptop:
-                return 1;
+                return LAPTOP;
             default:
-                return 2;
+                return TABLET;
         }
     }
 }

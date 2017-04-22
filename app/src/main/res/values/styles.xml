@@ -268,7 +268,7 @@
 
     <style name="cardview_view">
         <item name="android:layout_width">@dimen/view_width</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:layout_marginBottom">@dimen/view_margin_vertical</item>
         <item name="android:layout_marginLeft">@dimen/view_margin_horizontal</item>
         <item name="android:layout_marginRight">@dimen/view_margin_horizontal</item>
@@ -309,6 +309,13 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">@dimen/text_size_tiny</item>
+    </style>
+
+    <style name="cardview_sale_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginBottom">2dp</item>
     </style>
 
 </resources>
