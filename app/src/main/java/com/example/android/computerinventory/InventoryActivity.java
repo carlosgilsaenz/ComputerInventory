@@ -4,21 +4,27 @@ import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.BaseColumns;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.computerinventory.Data.InventoryContract.inventoryEntry;
+
+import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +41,9 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.text_view_empty_msg)
+    TextView mEmptyMsg;
 
     @OnClick(R.id.fab)
     public void fabClicked(){
@@ -78,9 +87,7 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
 
         if (id == R.id.action_delete) {
 
-            int rowsDeleted = getContentResolver().delete(inventoryEntry.CONTENT_URI,null,null);
-
-            Toast.makeText(this,"Number of Rows Deleted: " + rowsDeleted, Toast.LENGTH_SHORT).show();
+            showDeleteConfirmationDialog();
 
             return true;
         }
@@ -103,10 +110,39 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mAdapter.swapCursor(data);
+        if(data.getCount() == 0){
+            mEmptyMsg.setVisibility(View.VISIBLE);
+        } else {
+            mEmptyMsg.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mAdapter.swapCursor(null);
     }
+
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.inventory_act_delete_text));
+        builder.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked the "Delete" button, so delete.
+                int rowsDeleted = getContentResolver().delete(inventoryEntry.CONTENT_URI,null,null);
+            }
+        });
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked the "Cancel" button, so dismiss the dialog
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        // Create and show the AlertDialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 }

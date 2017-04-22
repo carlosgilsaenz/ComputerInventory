@@ -36,6 +36,7 @@ public class AddActivity extends AppCompatActivity {
 
     @OnClick({R.id.radio_button_desktop, R.id.radio_button_laptop, R.id.radio_button_tablet})
     public void updateComputerImage() {
+        //  Updates image live
         int checkedButton = mRadioGroup.getCheckedRadioButtonId();
 
         switch (checkedButton){
@@ -53,14 +54,13 @@ public class AddActivity extends AppCompatActivity {
 
     @OnClick(R.id.save_button)
     public void saveButtonClicked(){
-
         //  Determine which radio button selected
         int checkedButton = mRadioGroup.getCheckedRadioButtonId();
         int computerType;
 
         //  Confirm selection has been checked
         if(checkedButton == -1){
-            displayMessage("Please Select type");
+            displayMessage(R.string.add_act_type_msg);
             return;
         } else {
             //  Convert to value for DB
@@ -79,7 +79,7 @@ public class AddActivity extends AppCompatActivity {
 
         //  confirm price is valid
         if(priceString.isEmpty() || priceString.equals("")){
-            displayMessage("Price is invalid");
+            displayMessage(R.string.add_act_price_msg);
             return;
         } else{
             priceInt = Integer.parseInt(priceString);
@@ -95,10 +95,10 @@ public class AddActivity extends AppCompatActivity {
 
         Uri uri = getContentResolver().insert(inventoryEntry.CONTENT_URI, values);
 
-        if(ContentUris.parseId(uri) != -1 || uri == null){
-            displayMessage("Save successful");
+        if(ContentUris.parseId(uri) != -1){
+            displayMessage(R.string.save_successful);
         } else {
-            displayMessage("Save unsuccessful");
+            displayMessage(R.string.save_failed);
         }
 
         finish();
@@ -112,8 +112,8 @@ public class AddActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    public void displayMessage(String string){
-        Toast.makeText(this,string, Toast.LENGTH_SHORT).show();
+    private void displayMessage(int i){
+        Toast.makeText(this,getString(i), Toast.LENGTH_SHORT).show();
     }
 
     public int getComputerType(int checkedButton){

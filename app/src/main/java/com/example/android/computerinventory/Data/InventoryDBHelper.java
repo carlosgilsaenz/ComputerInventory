@@ -20,6 +20,7 @@ public class InventoryDBHelper extends SQLiteOpenHelper{
                     inventoryEntry.PRODUCT_NAME + " TEXT NOT NULL," +
                     inventoryEntry.PRODUCT_TYPE + " INTEGER NOT NULL," +
                     inventoryEntry.MANUFACTURE_EMAIL + " TEXT NOT NULL," +
+                    inventoryEntry.PRODUCT_HISTORY + " TEXT NOT NULL DEFAULT ''," +
                     inventoryEntry.PRODUCT_QUANTITY + " INTEGER DEFAULT 0 CHECK (" +
                     inventoryEntry.PRODUCT_QUANTITY +">=0)," +
                     inventoryEntry.PRODUCT_PRICE + " INTEGER CHECK(" +

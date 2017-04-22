@@ -17,4 +17,298 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- Basic Style -->
+    <style name="basic_one">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="basic_two">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="basic_three">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="basic_four">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- Plain view -->
+    <style name="plain_view">
+        <item name="android:layout_margin">@dimen/view_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/view_size</item>
+        <item name="android:background">@color/colorText</item>
+    </style>
+    <!-- Add Activity -->
+    <style name="Add_Linear_Layout">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">@dimen/layout_padding</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="add_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="add_image">
+        <item name="android:layout_width">@dimen/add_image_view</item>
+        <item name="android:layout_height">@dimen/add_image_view</item>
+    </style>
+
+    <style name="add_layout_computer_type">
+        <item name="android:layout_toRightOf">@+id/image_view</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/add_image_view</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/text_padding</item>
+    </style>
+
+    <style name="add_title_computer_type">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/text_padding</item>
+    </style>
+
+    <style name="Add_Text_View">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/text_padding</item>
+    </style>
+
+    <style name="add_save_button">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- detail -->
+
+    <style name="detail_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:padding">@dimen/layout_padding</item>
+    </style>
+
+    <style name="detail_image">
+        <item name="android:layout_width">@dimen/detail_image</item>
+        <item name="android:layout_height">@dimen/detail_image</item>
+        <item name="android:padding">@dimen/detail_image_padding</item>
+    </style>
+
+    <style name="detail_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lines">2</item>
+        <item name="android:padding">@dimen/text_padding_large</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="detail_text_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/text_padding</item>
+    </style>
+
+    <style name="detail_button">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">@dimen/detail_button</item>
+        <item name="android:layout_height">@dimen/detail_button</item>
+    </style>
+
+    <style name="detail_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="detail_layout_buttons">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/detail_layout</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="detail_textview_quantity_amt">
+        <item name="android:layout_width">@dimen/detail_quantity_w</item>
+        <item name="android:layout_height">@dimen/detail_quantity_h</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size_extra_l</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="detail_textview_quantity">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+    </style>
+
+    <!-- inventory -->
+
+    <style name="inventory_coordinator_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="inventory_appbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_bar_height</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:theme">@style/AppTheme.AppBarOverlay</item>
+    </style>
+
+    <style name="inventory_collapsing_toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="inventory_toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
+    <style name="inventory_fab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+    </style>
+
+    <style name="inventory_relative_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="inventory_text_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="inventory_nested_scroll_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="inventory_recylcer_view">
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- cardview -->
+
+    <style name="cardview_card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/card_h</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="cardview_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="cardview_image">
+        <item name="android:layout_width">@dimen/card_image</item>
+        <item name="android:layout_height">@dimen/card_image</item>
+        <item name="android:padding">@dimen/card_image_padding</item>
+    </style>
+
+    <style name="cardview_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lines">2</item>
+        <item name="android:padding">@dimen/text_padding_large</item>
+        <item name="android:textColor">@color/colorTitleText</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="cardview_quantity_amt">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_above">@+id/text_quantity</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_size_extra_l</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="cardview_view">
+        <item name="android:layout_width">@dimen/view_width</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginBottom">@dimen/view_margin_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/view_margin_horizontal</item>
+        <item name="android:layout_marginRight">@dimen/view_margin_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/view_margin_vertical</item>
+        <item name="android:background">@color/colorText</item>
+    </style>
+
+    <style name="cardview_price">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">@dimen/text_padding_large</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+    </style>
+
+    <style name="cardview_price_amt">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_above">@+id/text_price</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_size_extra_l</item>
+        <item name="android:lines">1</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="cardview_quantity">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">@dimen/text_padding_large</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+    </style>
+
 </resources>

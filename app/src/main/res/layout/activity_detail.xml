@@ -5,180 +5,98 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:padding="10dp">
+        <LinearLayout style="@style/detail_layout">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                style="@style/basic_two">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:padding="3dp"
                     android:id="@+id/detail_image_type"
-                    tools:src="@drawable/ic_desktop"/>
+                    tools:src="@drawable/ic_desktop"
+                    style="@style/detail_image" />
 
                 <TextView
                     android:id="@+id/detail_text_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lines="2"
-                    android:padding="12dp"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:ellipsize="end"
-                    tools:text="TEXT TITLE OF ITEM REALLY LONG" />
+                    tools:text="TEXT TITLE OF ITEM REALLY LONG"
+                    style="@style/detail_title" />
             </LinearLayout>
 
-
             <View
-                android:layout_margin="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorText"/>
+                style="@style/plain_view"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Manufacturer's email"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:padding="5dp"/>
+                android:text="@string/add_manufacturer_email"
+                style="@style/detail_text_view" />
 
             <EditText
                 android:id="@+id/detail_text_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/basic_two"
                 tools:text="Dell@dell.com"/>
 
             <View
-                android:layout_margin="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorText"/>
+                style="@style/plain_view"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Inventory Price"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:padding="4dp"/>
+                style="@style/detail_text_view"
+                android:text="@string/add_inventory_price" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/basic_two"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    style="@style/basic_three"
+                    android:textSize="@dimen/text_size_small"
                     android:text="$"/>
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
                     android:id="@+id/detail_text_price"
-                    tools:text="100"/>
+                    tools:text="100"
+                    style="@style/detail_edit_text" />
 
             </LinearLayout>
 
             <View
-                android:layout_margin="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorText"/>
+                style="@style/plain_view"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:orientation="horizontal">
+            <LinearLayout style="@style/detail_layout_buttons">
 
                 <ImageButton
-                    android:layout_gravity="center"
+                    style="@style/detail_button"
                     android:id="@+id/detail_button_minus"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
                     android:src="@drawable/ic_launcher_minus" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    style="@style/basic_four"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/detail_text_quantity_amt"
-                        android:layout_width="80sp"
-                        android:layout_height="60sp"
-                        android:gravity="center"
-                        android:textSize="45sp"
-                        android:textStyle="bold"
-                        tools:text="0" />
+                        tools:text="0"
+                        style="@style/detail_textview_quantity_amt" />
 
                     <TextView
                         android:id="@+id/detail_text_quantity"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="center"
-                        android:text="quantity"
-                        android:textAllCaps="true"
-                        android:textSize="14sp" />
+                        android:text="@string/quantity"
+                        style="@style/detail_textview_quantity" />
 
                 </LinearLayout>
                 <ImageButton
                     android:id="@+id/detail_button_add"
-                    android:layout_gravity="center"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_launcher_add" />
-
-                <View
-                    android:layout_width="4dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="18dp"
-                    android:layout_marginLeft="14dp"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginTop="18dp"
-                    android:background="@color/colorText" />
-
-                <Button
-                    android:id="@+id/detail_save_button"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Save" />
-
+                    android:src="@drawable/ic_launcher_add"
+                    style="@style/detail_button" />
 
             </LinearLayout>
 
             <View
-                android:layout_margin="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorText"/>
+                style="@style/plain_view"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sales History"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:padding="4dp"/>
+                style="@style/detail_text_view"
+                android:text="@string/detail_sales_history" />
 
             <TextView
                 android:id="@+id/detail_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorText"/>
+                style="@style/basic_three" />
 
         </LinearLayout>
 </ScrollView>

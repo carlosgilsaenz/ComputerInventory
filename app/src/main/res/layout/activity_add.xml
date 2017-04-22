@@ -1,169 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/basic_one">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        style="@style/Add_Linear_Layout">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Computer"
-            android:textSize="25sp"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:paddingTop="10dp"/>
+            android:text="@string/add_title"
+            style="@style/add_title" />
 
-        <View
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorText"/>
+        <View style="@style/plain_view" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            style="@style/basic_two">
 
             <ImageView
                 android:id="@+id/image_view"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:src="@drawable/ic_question_mark"/>
+                android:src="@drawable/ic_question_mark"
+                style="@style/add_image" />
 
-            <LinearLayout
-                android:layout_toRightOf="@+id/image_view"
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:orientation="vertical"
-                android:padding="4dp">
+            <LinearLayout style="@style/add_layout_computer_type">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Computer Type"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="4dp"/>
+                    android:text="@string/add_computer_type"
+                    style="@style/add_title_computer_type" />
                 <RadioGroup
                     android:id="@+id/radio_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    style="@style/basic_three">
 
                     <RadioButton
                         android:id="@+id/radio_button_desktop"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Desktop"/>
+                        style="@style/basic_three"
+                        android:text="@string/add_desktop"/>
 
                     <RadioButton
                         android:id="@+id/radio_button_laptop"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Laptop"/>
+                        style="@style/basic_three"
+                        android:text="@string/add_laptop"/>
 
                     <RadioButton
                         android:id="@+id/radio_button_tablet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tablet"/>
+                        style="@style/basic_three"
+                        android:text="@string/add_tablet"/>
 
                 </RadioGroup>
             </LinearLayout>
         </RelativeLayout>
 
         <View
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorText"/>
+            style="@style/plain_view" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Inventory Name"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="4dp"/>
+            android:text="@string/add_inventory_name"
+            style="@style/Add_Text_View" />
 
         <EditText
             android:id="@+id/name_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/basic_two"
             android:hint="Dell Precision M4500"/>
 
         <View
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorText"/>
+            style="@style/plain_view" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Manufacturer's email"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="4dp"/>
+            style="@style/Add_Text_View"
+            android:text="@string/add_manufacturer_email" />
 
         <EditText
             android:id="@+id/email_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/basic_two"
             android:hint="DellSalesRep@Dell.com"/>
 
         <View
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorText"/>
+            style="@style/plain_view" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Inventory Price"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="4dp"/>
+            style="@style/Add_Text_View"
+            android:text="@string/add_inventory_price" />
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/basic_two"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
+                style="@style/basic_three"
+                android:textSize="@dimen/text_size_small"
                 android:text="$"/>
             <EditText
                 android:id="@+id/price_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/basic_two"
                 android:inputType="number"
                 android:hint="100"/>
 
         </LinearLayout>
 
         <View
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorText"/>
+            style="@style/plain_view" />
 
         <Button
             android:id="@+id/save_button"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Save"/>
+            android:text="@string/save"
+            style="@style/add_save_button" />
 
     </LinearLayout>
 

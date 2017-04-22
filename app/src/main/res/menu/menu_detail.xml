@@ -6,18 +6,24 @@
     <item
         android:id="@+id/detail_menu_order"
         android:orderInCategory="100"
-        android:title="Order"
+        android:title="@string/order"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/detail_menu_sell"
         android:orderInCategory="100"
-        android:title="Sell"
+        android:title="@string/sell"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/detail_menu_delete"
         android:orderInCategory="100"
-        android:title="@string/action_delete"
+        android:title="@string/delete"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/detail_menu_save"
+        android:orderInCategory="100"
+        android:title="@string/save"
         app:showAsAction="never" />
 </menu>

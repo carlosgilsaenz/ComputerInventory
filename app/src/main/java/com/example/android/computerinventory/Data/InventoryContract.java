@@ -32,6 +32,9 @@ public class InventoryContract {
         //  Manufacturers email
         public static final String MANUFACTURE_EMAIL = "email";
 
+        //  Product History
+        public static final String PRODUCT_HISTORY ="history";
+
         //  URI creation
         public static final String CONTENT_AUTHORITY = "com.example.android.computerinventory";
         public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
@@ -39,9 +42,5 @@ public class InventoryContract {
 
         //  Create URI
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_INVENTORY);
-
-        //  MIME type for list of inventory
-        public static final String CONTENT_LIST_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_INVENTORY;
     }
 }

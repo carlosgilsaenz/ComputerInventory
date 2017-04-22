@@ -7,6 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -21,6 +22,8 @@ public class InventoryProvider extends ContentProvider{
     private static final int COMPUTERS = 100;
 
     private static final int COMPUTER_ID = 101;
+
+    private static final long INVALID_INSERT = -1;
 
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
@@ -73,38 +76,32 @@ public class InventoryProvider extends ContentProvider{
     @Nullable
     @Override
     public String getType(@NonNull Uri uri) {
-//        final int match = sUriMatcher.match(uri);
-//        switch (match){
-//            case COMPUTERS:
-//                return inventoryEntry.CONTENT_LIST_TYPE;
-//            default:
-//                throw new IllegalArgumentException("Unknown URI " + uri + "with match " + match);
-//        }
         return null;
     }
 
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
+
         //  Confirm Name is valid
         String name = values.getAsString(inventoryEntry.PRODUCT_NAME);
 
         if(name.isEmpty() || name.equals("")){
-            return null;
+            return ContentUris.withAppendedId(uri, INVALID_INSERT);
         }
 
         //  Confirm email is not valid
         String email = values.getAsString(inventoryEntry.MANUFACTURE_EMAIL);
 
         if(email.isEmpty() || email.equals("") || !email.contains("@")){
-            return null;
+            return ContentUris.withAppendedId(uri, INVALID_INSERT);
         }
 
         //  Confirm computer type
         int type = values.getAsInteger(inventoryEntry.PRODUCT_TYPE);
 
         if(type < 0 || type > 2){
-            return null;
+            return ContentUris.withAppendedId(uri, INVALID_INSERT);
         }
 
         // Get writable database
@@ -118,6 +115,7 @@ public class InventoryProvider extends ContentProvider{
         getContext().getContentResolver().notifyChange(uri, null);
 
         return ContentUris.withAppendedId(uri, id);
+
     }
 
     @Override
@@ -171,13 +169,16 @@ public class InventoryProvider extends ContentProvider{
     }
 
     private int updateInventory(Uri uri, ContentValues values, String selection, String[] selectionArgs){
-        //  Confirm email is not valid
-        String email = values.getAsString(inventoryEntry.MANUFACTURE_EMAIL);
+        if(!values.containsKey(inventoryEntry.PRODUCT_HISTORY)){
+            //  Confirm email is valid
+            String email = values.getAsString(inventoryEntry.MANUFACTURE_EMAIL);
 
-        if(email.isEmpty() || email.equals("") || !email.contains("@")){
-            return 0;
+            if(email.isEmpty() || email.equals("") || !email.contains("@")){
+                return 0;
+            }
         }
 
+        //  Ensure value is not empty
         if(values.size() == 0){
             return 0;
         }

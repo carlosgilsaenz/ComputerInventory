@@ -5,4 +5,40 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="layout_padding">16dp</dimen>
+
+    <!-- Add Activity -->
+    <dimen name="add_image_view">130dp</dimen>
+
+    <!-- Detail Activity -->
+    <dimen name="detail_image">100dp</dimen>
+    <dimen name="detail_image_padding">3dp</dimen>
+    <dimen name="detail_layout">80dp</dimen>
+    <dimen name="detail_button">60dp</dimen>
+    <dimen name="detail_quantity_w">80sp</dimen>
+    <dimen name="detail_quantity_h">60sp</dimen>
+
+    <!-- Card View -->
+    <dimen name="card_h">220dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="card_radius">10dp</dimen>
+    <dimen name="card_image">100dp</dimen>
+    <dimen name="card_image_padding">3dp</dimen>
+
+
+    <!-- Text -->
+    <dimen name="text_size_extra_l">45sp</dimen>
+    <dimen name="text_size_large">25sp</dimen>
+    <dimen name="text_size_small">18sp</dimen>
+    <dimen name="text_size_tiny">14sp</dimen>
+    <dimen name="text_padding_large">12dp</dimen>
+    <dimen name="text_padding">4dp</dimen>
+
+    <!--Plain View -->
+    <dimen name="view_margin">8dp</dimen>
+    <dimen name="view_size">1dp</dimen>
+    <dimen name="view_width">4dp</dimen>
+    <dimen name="view_margin_vertical">18dp</dimen>
+    <dimen name="view_margin_horizontal">14dp</dimen>
+
 </resources>
