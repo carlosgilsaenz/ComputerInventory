@@ -76,8 +76,20 @@ public class AddActivity extends AppCompatActivity {
         //  Get name of product
         String name = mName.getText().toString().trim();
 
+        //  Name is required input
+        if(name.equals("") || name.isEmpty()){
+            displayMessage(R.string.add_name_msg);
+            return;
+        }
+
         //  Get email
         String email = mEmail.getText().toString().trim();
+
+        //  email is required input
+        if(email.equals("") || email.isEmpty() || !email.contains("@")){
+            displayMessage(R.string.add_email_msg);
+            return;
+        }
 
         //  Get price
         String priceString = mPrice.getText().toString().trim();

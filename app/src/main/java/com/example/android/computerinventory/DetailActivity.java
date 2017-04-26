@@ -132,7 +132,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
                 if(email[0].isEmpty() || email[0].equals("") || !email[0].contains("@")){
                     displayMessage(R.string.detail_act_email_invalid);
                 }  else{
-                    Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                    Intent intent = new Intent(android.content.Intent.ACTION_SENDTO);
                     intent.setType(SET_TYPE);
                     intent.setData(Uri.parse(SET_DATA));
                     intent.putExtra(Intent.EXTRA_EMAIL, email);

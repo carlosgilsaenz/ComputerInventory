@@ -20,6 +20,8 @@
 
 
     <!-- AddActivity Strings-->
+    <string name="add_name_msg">Product Name Required</string>
+    <string name="add_email_msg">Valid email Required</string>
     <string name="add_act_type_msg">Please Select type</string>
     <string name="add_act_price_msg">Price is invalid</string>
     <string name="add_title">Add Computer</string>
